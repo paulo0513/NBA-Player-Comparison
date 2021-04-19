@@ -60,24 +60,22 @@ Picture example endpoint: https://ak-static.cms.nba.com/wp-content/uploads/heads
 
 ## Wireframes
 
-Upload images of your wireframes to an image hosting site or add them to an assets folder in your repo and link them here with a description of each specific wireframe.
+https://i.imgur.com/vSM3TfU.png
 
 ### MVP/PostMVP
 
-The functionality will then be divided into two separate lists: MPV and PostMVP.  Carefully decided what is placed into your MVP as the client will expect this functionality to be implemented upon project completion.  
+#### MVP
 
-#### MVP 
-*These are examples only. Replace with your own MVP features.*
-
-- Find and use external api 
-- Render data on page 
-- Allow user to choose favorites 
+- Adding fields for player 1 and player 2 names, actionable "compare button"
+- Use APIs to append player images and stats
+- Stats are highlighted to indicate which player is better in that stat
+- Players are cleared when another search is submitted
 
 #### PostMVP  
-*These are examples only. Replace with your own Post-MVP features.*
 
-- Add second API
-- Use local storage to save user favorites
+- Turn it into a guessing game and ask user to see which player is better
+- Add third player to compare
+- More CSS/design
 
 ## Project Schedule
 
