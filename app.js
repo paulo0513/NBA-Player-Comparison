@@ -9,15 +9,15 @@
 // https://www.balldontlie.io/api/v1/players/?search=${firstname}%20${lastname}
 // https://www.balldontlie.io/api/v1/season_averages?player_ids[]=${playerID}
 
-async function fetchPlayerID(firstname, lastname) {
+async function fetchPlayerID(firstname, lastname, num) {
   const url = `https://www.balldontlie.io/api/v1/players/?search=${firstname}%20${lastname}`
   try {
     const response = await axios.get(url)
     // console.log(response.data.data[0].id)
     // console.log(
     removePlayers()
-    fetchPlayerStats(response.data.data[0].id)
-    fetchPersonID(firstname, lastname)
+    fetchPlayerStats(response.data.data[0].id, num)
+    fetchPersonID(firstname, lastname, num)
     // )
     return response
   }
@@ -28,13 +28,13 @@ async function fetchPlayerID(firstname, lastname) {
 
 // fetchPlayerID("kevin", "durant")
 
-async function fetchPlayerStats(playerID) { //this is where i might have to separate into two functions for each player
+async function fetchPlayerStats(playerID, num) { //this is where i might have to separate into two functions for each player
   const url = `https://www.balldontlie.io/api/v1/season_averages?player_ids[]=${playerID}`
   try {
     const response = await axios.get(url)
     console.log(response.data.data[0])
-    showPlayer1Stats(response.data.data[0])
-    showPlayer2Stats(response.data.data[0])
+    showPlayerStats(response.data.data[0], num)
+    // showPlayer2Stats(response.data.data[0])
     // return response
   }
   catch (error) {
@@ -42,7 +42,7 @@ async function fetchPlayerStats(playerID) { //this is where i might have to sepa
   }
 }
 
-async function fetchPersonID(firstName, lastName) {
+async function fetchPersonID(firstName, lastName, num) {
   const url = `http://data.nba.net/data/10s/prod/v1/2020/players.json`
   try {
     const response = await axios.get(url)
@@ -50,7 +50,7 @@ async function fetchPersonID(firstName, lastName) {
     const foundPlayer = response.data.league.standard.find((player) => {
       return player.firstName.toLowerCase() === firstName.toLowerCase() && lastName.toLowerCase() === player.lastName.toLowerCase()
     })
-    fetchPlayerPicture(foundPlayer.personId)
+    fetchPlayerPicture(foundPlayer.personId, num)
     
     console.log(foundPlayer)
     // console.log(response.data.league.standard[`${firstName}`][`${lastName}`])
@@ -62,13 +62,14 @@ async function fetchPersonID(firstName, lastName) {
 }
 // fetchPersonID("russell","westbrook")
 
-async function fetchPlayerPicture(personId) {
+async function fetchPlayerPicture(personId, num) {
   const url = `https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/${personId}.png`
   try {
     const response = await axios.get(url)
     console.log(response.config.url)
     // return response
-    showPlayerPic(response.config.url)
+    showPlayerPic(response.config.url, num)
+    // showPlayerPic2(response.config.url)
   }
   catch (error) {
     console.error(error)
@@ -86,8 +87,8 @@ playerForm.addEventListener('submit', (e) => {
   const player1LastName = document.querySelector('.p1-lname').value
   const player2FirstName = document.querySelector('.p2-fname').value
   const player2LastName = document.querySelector('.p2-lname').value
-  fetchPlayerID(player1FirstName, player1LastName)
-  fetchPlayerID(player2FirstName, player2LastName)
+  fetchPlayerID(player1FirstName, player1LastName, 1)
+  fetchPlayerID(player2FirstName, player2LastName, 2)
   document.querySelector('.p1-fname').value = ""
   document.querySelector('.p1-lname').value = ""
   document.querySelector('.p2-fname').value = ""
@@ -95,47 +96,60 @@ playerForm.addEventListener('submit', (e) => {
   // showPlayerStats(playerID)
 })
 
-function showPlayer1Stats(data) {
+function showPlayerStats(data, num) {
   console.log(data)
   let playerData = `
-  <h4>Player 1 Stats:</h4>
+  <h4>Player ${num} Stats:</h4>
   <div class="p1-points">Points: ${data.pts}</div>
   <div class="p1-rebounds">Rebounds: ${data.reb}</div>
   <div class="p1-assists">Assists: ${data.ast}</div>
   <div class="p1-steals">Steals: ${data.stl}</div>
   <div class="p1-turnovers">Turnovers: ${data.turnover}</div>
 `
-  document.querySelector('.player-data').insertAdjacentHTML('beforeend', playerData)
+  document.querySelector(`.player-data-${num}`).insertAdjacentHTML('beforeend', playerData)
   return playerData
 }
 
-function showPlayer2Stats(data) { // data is the same in this function and showPlayer1stats
-  let playerData = `
-  <h5>Player 2 Stats:</h5>
-  <div class="p2-points">Points: ${data.pts}</div>
-  <div class="p2-rebounds">Rebounds: ${data.reb}</div>
-  <div class="p2-assists">Assists: ${data.ast}</div>
-  <div class="p2-steals">Steals: ${data.stl}</div>
-  <div class="p2-turnovers">Turnovers: ${data.turnover}</div>
-  `
+// function showPlayer2Stats(data) { // data is the same in this function and showPlayer1stats
+//   let playerData = `
+//   <h5>Player 2 Stats:</h5>
+//   <div class="p2-points">Points: ${data.pts}</div>
+//   <div class="p2-rebounds">Rebounds: ${data.reb}</div>
+//   <div class="p2-assists">Assists: ${data.ast}</div>
+//   <div class="p2-steals">Steals: ${data.stl}</div>
+//   <div class="p2-turnovers">Turnovers: ${data.turnover}</div>
+//   `
 
-  document.querySelector('.player-data').insertAdjacentHTML('beforeend', playerData)
-  return playerData
-}
+//   document.querySelector('.player-data-2').insertAdjacentHTML('beforeend', playerData)
+//   return playerData
+// }
 
-function showPlayerPic(imageURL) { //???
+function showPlayerPic(imageURL, num) { //???
   let playerPic = `
   <img src="${imageURL}" alt="player-picture" style="width: 250px; height:auto">
   `
 
-  document.querySelector('.player-data').insertAdjacentHTML('afterbegin', playerPic)
+  document.querySelector(`.player-data-${num}`).insertAdjacentHTML('afterbegin', playerPic)
   // return playerPic
 }
 
+// function showPlayerPic2(imageURL) { //???
+//   let playerPic = `
+//   <img src="${imageURL}" alt="player-picture" style="width: 250px; height:auto">
+//   `
+
+//   document.querySelector('.player-data-2').insertAdjacentHTML('afterbegin', playerPic)
+//   // return playerPic
+// }
+
 function removePlayers() {
-  const removePlayer = document.querySelector('.player-data')
-  while (removePlayer.lastChild) {
-    removePlayer.removeChild(removePlayer.lastChild)
+  const removePlayer1 = document.querySelector('.player-data-1')
+  const removePlayer2 = document.querySelector('.player-data-2')
+  while (removePlayer1.lastChild) {
+    removePlayer1.removeChild(removePlayer1.lastChild)
+  }
+  while (removePlayer2.lastChild) {
+    removePlayer2.removeChild(removePlayer2.lastChild)
   }
 }
 // Set player ID as a variable, call API again to fetch player stats

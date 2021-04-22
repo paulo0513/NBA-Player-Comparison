@@ -1,14 +1,138 @@
 * {
   box-sizing: border-box;
-  background: beige;
+  background: white;
+  width: auto;
+}
+
+/* header,
+footer {
+  background: rgb(5,28,45);
+  height: 10vh;
 }
 
 header {
-  background-color: rgb()
+  color: white;
+  font-size: 36px;
+  text-align: left;
+  padding: 22px;
 }
 
-.player1 
+@media only screen and(max-width: 500px) {
+  header {
+    font-size: 15px;
+  }
+} */
+
+header,
+footer {
+  display: flex;
+  flex-wrap: wrap;
+  background: rgb(5, 28, 45);
+  color: white;
+  padding: 20px;
+  margin: auto;
+  height: auto;
+}
+
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 75px;
+  font-size: 36px;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  font-size: 8px;
+}
+
+body{
+  padding-top: 75px;
+}
+
+.form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.player1, 
 .player2 {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+
+.submit {
+  display: flex;
+  width: 63px;
+  height: auto;
+}
+
+.player-data {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.container {
+  display: flex;
+  column-count: 2;
+  width: auto;
+  column-gap: 25px;
+  flex-wrap: wrap; 
+  justify-content: center;
+  padding-top: 20px;
+}
+
+.player-data-1,
+.player-data-2 {
+  display: flex;
+  break-inside: avoid;
+  page-break-inside: avoid;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.text-box {
+  height: 5px;
+  font-size: 8px;
+}
+
+@media only screen and(max-width: 750px) and(min-width: 375px) {
+  header{
+    font-size: 20px
+  }
+
+  .container {
+    display: flex;
+    column-count: 2;
+    width: auto;
+    flex-wrap: wrap; 
+    justify-content: center;
+    padding-top: 20px;
+  }
+
+  .form{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  
+  .player1, 
+  .player2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap
+  }
 }
