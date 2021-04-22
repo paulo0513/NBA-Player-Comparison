@@ -1,0 +1,14 @@
+* {
+  box-sizing: border-box;
+  background: beige;
+}
+
+header {
+  background-color: rgb()
+}
+
+.player1 
+.player2 {
+  display: flex;
+  flex-direction: column-reverse;
+}
