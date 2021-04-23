@@ -66,16 +66,14 @@ https://i.imgur.com/vSM3TfU.png
 
 #### MVP
 
-- Adding fields for player 1 and player 2 names, actionable "compare button"
-- Use APIs to append player images and stats
-- Stats are highlighted to indicate which player is better in that stat
+- Adding fields for player 1 and player 2 names, actionable "compare" button
+- Use 2 APIs to append player images and stats
 - Players are cleared when another search is submitted
 
 #### PostMVP  
 
-- Turn it into a guessing game and ask user to see which player is better
+- Stats are highlighted to indicate which player is better in that stat
 - Add third player to compare
-- More CSS/design
 
 ## Project Schedule
 
