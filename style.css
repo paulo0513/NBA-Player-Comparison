@@ -4,25 +4,6 @@
   width: auto;
 }
 
-/* header,
-footer {
-  background: rgb(5,28,45);
-  height: 10vh;
-}
-
-header {
-  color: white;
-  font-size: 36px;
-  text-align: left;
-  padding: 22px;
-}
-
-@media only screen and(max-width: 500px) {
-  header {
-    font-size: 15px;
-  }
-} */
-
 header,
 footer {
   display: flex;
@@ -110,36 +91,12 @@ body{
 
 @media all and (max-width: 550px) {
   header {
-    /* display: flex; */
-    /* flex-direction: column; */
     font-size: 20px;
     height: 100px;
+    background-color: rgb(199, 16, 46)
   }
 
-  /* body {
-    background-color: red;
-  } */
-
-  /* .container {
-    display: flex;
-    column-count: 2;
-    width: auto;
-    flex-wrap: wrap; 
-    justify-content: center;
-    padding-top: 20px;
+  footer {
+    background-color: rgb(199, 16, 46)
   }
-
-  .form{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-  }
-  
-  .player1, 
-  .player2 {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    flex-wrap: wrap
-  } */
 }
