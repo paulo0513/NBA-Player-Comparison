@@ -81,17 +81,17 @@ https://i.imgur.com/vSM3TfU.png
 
 |  Day | Deliverable | Status
 |---|---| ---|
-|April 16-18| Prompt / Wireframes / Priority Matrix / Timeframes | Incomplete
-|April 19| Project Approval | Incomplete
-|April 19| Create necessary HTML, CSS, and JS files w/ basic formatting | Incomplete
-|April 19| Pseudocode | Incomplete
-|April 20| Create layout and add form to HTML | Incomplete
-|April 20| Call Axios and connect API | Incomplete
-|April 20| Add Eventhandler and append pictures/stats | Incomplete
-|April 20| CSS Styling| Incomplete
-|April 21| MVP | Incomplete
+|April 16-18| Prompt / Wireframes / Priority Matrix / Timeframes | Complete
+|April 19| Project Approval | Complete
+|April 19| Create necessary HTML, CSS, and JS files w/ basic formatting | Complete
+|April 19| Pseudocode | Complete
+|April 20| Create layout and add form to HTML | Complete
+|April 20| Call Axios and connect API | Complete
+|April 20| Add Eventhandler and append pictures/stats | Complete
+|April 20| CSS Styling| Complete
+|April 21| MVP | Complete
 |April 22| PostMVP | Incomplete
-|April 23| Presentations | Incomplete
+|April 23| Presentations | Complete
 
 ## Priority Matrix
 
@@ -101,29 +101,33 @@ https://i.imgur.com/39ZvtyD.png
 
 | Component | Priority | Estimated Time | Time Invested | Actual Time |
 | --- | :---: |  :---: | :---: | :---: |
-| HTML and CSS structure, connect files | H | 1hrs| 0hrs | 0hrs |
-| Psuedocode | M | 2hrs| 0hrs | 0hrs |
-| Adding Form and text to HTML | H | 1hrs| 0hrs | 0hrs |
-| Add eventhandlers | H | 1hrs| 0hrs | 0hrs |
-| Add API Call/test | H | 2hrs| 0hrs | 0hrs |
-| Append Player stats | H | 2hrs| 0hrs | 0hrs |
-| Add 2nd API Call/test | H | 2hrs| 0hrs | 0hrs |
-| Append Player Picture | M | 2hrs| 0hrs | 0hrs |
-| Remove previous search | H | 2hrs| 0hrs | 0hrs |
-| Add CSS styling | M | 3hrs| 0hrs | 0hrs |
-| Add Responsive styling | M | 1hrs| 0hrs | 0hrs |
+| HTML and CSS structure, connect files | H | 1hrs| .5hrs | .5hrs |
+| Psuedocode | M | 2hrs| 2hrs | 2hrs |
+| Adding Form and text to HTML | H | 1hrs| .5hrs | .5hrs |
+| Add eventhandlers | H | 1hrs| 2hrs | 2hrs |
+| Add API Call/test | H | 2hrs| 6hrs | 6hrs |
+| Append Player stats | H | 2hrs| 2hrs | 2hrs |
+| Add 2nd API Call/test | H | 2hrs| 6hrs | 6hrs |
+| Append Player Picture | M | 2hrs| 2hrs | 2hrs |
+| Remove previous search | H | 2hrs| 3hrs | 3hrs |
+| Add CSS styling | M | 3hrs| 5hrs | 5hrs |
+| Add Responsive styling | M | 1hrs| 2hrs | 2hrs |
 | Highlight stats | M | 2hrs| 0hrs | 0hrs |
-| Total | H | 22hrs| 0hrs | 0hrs |
+| Total | H | 22hrs| 31hrs | 31hrs |
 
 ## Code Snippet
 
-Use this section to include a brief code snippet of functionality that you are proud of and a brief description.  
+most proud of this code because putting all of the functions/logic together was my biggest challenge.  
 
 ```
-function reverse(string) {
-	// here is the code to reverse a string of text
-}
+async function fetchPlayerID(firstname, lastname, num) {
+  const url = `https://www.balldontlie.io/api/v1/players/?search=${firstname}%20${lastname}`
+  try {
+    const response = await axios.get(url)
+    removePlayers()
+    fetchPlayerStats(response.data.data[0].id, num)
+    fetchPersonID(firstname, lastname, num)
 ```
 
 ## Change Log
- Use this section to document what changes were made and the reasoning behind those changes.  
+ Calling the two APIs was more challenging than anticipated. Also, passing through two sets of data caused a lot of duplications. Because of the time spent on these things, I was not able to spend as much time on the design as I would have liked. I opted not to complete the higlighting of stats.
