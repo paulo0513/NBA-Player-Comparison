@@ -21,7 +21,7 @@ async function fetchPlayerID(firstname, lastname, num) {
 }
 
 async function fetchPersonID(firstName, lastName, num) {
-  const url = `http://data.nba.net/data/10s/prod/v1/2020/players.json`
+  const url = `https://data.nba.net/data/10s/prod/v1/2020/players.json`
   try {
     const response = await axios.get(url)
     const foundPlayer = response.data.league.standard.find((player) => {
